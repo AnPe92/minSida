@@ -8,7 +8,7 @@ import { AddTodoForm } from '../components/AddTodoForm'
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch(`http://min-sida.vercel.app/api/fetchData`);
   const data = await res.json();
-
+  //
   return {
     props: {
       data,
