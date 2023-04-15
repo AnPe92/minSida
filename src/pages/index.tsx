@@ -2,11 +2,17 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { GetServerSideProps } from 'next';
 import { AddTodoForm } from '../components/AddTodoForm'
+
 //import { connection } from './api/hello'
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`min-sida.vercel.app/api/fetchData`);
+
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : 'http://localhost:3000';
+
+  const res = await fetch(`{baseUrl}/api/fetchData`);
   const data = await res.json();
   //
   return {
