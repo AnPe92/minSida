@@ -8,11 +8,12 @@ import { AddTodoForm } from '../components/AddTodoForm'
 
 export const getServerSideProps: GetServerSideProps = async () => {
 
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'http://localhost:3000';
+  const isLocalDevelopment = process.env.NODE_ENV === 'development';
+  const baseUrl = isLocalDevelopment
+    ? 'http://localhost:3000'
+    : `https://${process.env.VERCEL_URL}`;
 
-  const res = await fetch(`{baseUrl}/api/fetchData`);
+  const res = await fetch(`${baseUrl}/api/fetchData`);
   //
   const data = await res.json();
   //
