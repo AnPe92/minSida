@@ -13,6 +13,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     : 'http://localhost:3000';
 
   const res = await fetch(`{baseUrl}/api/fetchData`);
+  //
   const data = await res.json();
   //
   return {
